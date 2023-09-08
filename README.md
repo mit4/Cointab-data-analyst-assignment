@@ -5,7 +5,7 @@
 ## Overview
 
 Welcome to the Cointab Data Analyst Assignment! In this assignment, you will tackle a real-life scenario involving a large e-commerce company in India (referred to as X). Your mission is to verify the accuracy of charges levied by X's delivery partners for each order, considering factors such as weight, price, and distance.
-The sample data can be found [here.]()
+The data can be found [here.](https://github.com/mit4/Cointab-data-analyst-assignment/tree/9c92c4595db86d159773350e8070ab45a5ded34a/data/raw)
 
 ## Business Scenario
 
