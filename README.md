@@ -2,47 +2,40 @@
 
 ## Overview
 
-Please understand the below mentioned real-life scenario and try to solve the assignment.
+Welcome to the Cointab Data Analyst Assignment! In this assignment, you will tackle a real-life scenario involving a large e-commerce company in India (referred to as X). Your mission is to verify the accuracy of charges levied by X's delivery partners for each order, considering factors such as weight, price, and distance.
 The sample data can be found [here.]()
 
 ## Business Scenario
 
-You are a data analyst and your client has a large ecommerce company in India (let’s call it X). X gets a thousand orders via their website on a daily basis and they have to deliver them as fast as they can. For delivering the goods ordered by the customers, X has tied up with multiple courier companies in India as delivery partners who charge them some amount per delivery.
+X, a major e-commerce player in India, processes thousands of daily orders. To deliver these orders efficiently, they partner with several courier companies. These courier companies charge X based on the weight of the product, its price, and the distance between the warehouse and the customer's delivery address.
 
-The charges are dependent upon two factors:
+On average, X pays approximately Rs. 100 per shipment. With a monthly shipment volume of 1,00,000 orders, this translates to a substantial monthly expense of around Rs. 1 crore. Given the significant costs involved, X aims to ensure that the charges levied by their delivery partners are accurate.
 
-- Weight of the product and the Price of the product.
-- Distance between the warehouse (pickup location) and customer’s delivery address (destination location)
-
-On an average, the delivery charges are Rs. 100 per shipment. So if X ships 1,00,000 orders per month, they have to pay approximately Rs. 1 crore to the courier companies on a monthly basis as charges.
-As the amount that X has to pay to the courier companies is very high, they want to verify if the charges levied by their Delivery partners per Order are correct.
+[Refer this link for detailed information.](references/Data%20Analyst%20-%20Assignment.pdf)
 
 ## Input Data
 
-### Left Hand Side (LHS) Data (X’s internal data spread across three reports)
+The data required for this assignment is divided into two parts:
 
-- Website order report- which will list Order IDs ,various products (SKUs) part of each order and the Payment Type of the Order ( COD or Prepaid). Order ID is common identifier between X’s order report and courier company invoice
-- Warehouse pincode to All India pincode mapping -(this should be used to figure out
-delivery zone (a/b/c/d/e) and during analysis compare against one reported by courier company in their CSV invoice per Order ID
-- SKU master with gross weight of each product. This should be used to calculate total weight of each order and during analysis compare against one reported by courier company in their CSV invoice per Order ID. The courier company calculates weight in slabs that is applicable for that delivery zone, so first you have to figure out the total weight of the shipment and then figure out applicable weight (based on zone’s weight slab).
+### Left Hand Side (LHS) Data (X's Internal Data)
 
-### RHS Data (courier company invoice in CSV file)
+**Website Order Report** : Contains Order IDs, product details (SKUs), and payment types (COD or Prepaid).
 
-- Invoice in CSV file mentioning AWB Number (courier company’s own internal ID), OrderID (company X’s order ID), weight of shipment, warehouse pickup pincode, customer delivery pincode, zone of delivery, charges per shipment, type of shipment.
-- Courier charges rate card at weight slab and pincode level. If the invoice mentions “Forward charges” then only forward charges (“fwd”) should be applicable as per zone and fixed & additional weights based on weight slabs. If the invoice mentions “Forward and rto charges” then forward charges (“fwd”) and RTO charges (“rto”) should be applicable as per zone and fixed & additional weights based on weight slabs.
-- For the first slab of that zone, “fixed” rate as per the slab is applicable. For each additional slab, “additional” weight in the same proportion is applicable. Total charges will be “fixed” + “total additional” if any. For example: weight 2.2KG, Zone C. So for Zone C
-the slab length = 0.75KG. So the total applicable weight = 2.25KG. For the first 0.75 KG the charge is “fwd”, and for each 0.75 after the first, charges will be additional charges.
-- Once this is done, then you need to calculate the COD charges. For this case, if the order is Prepaid then COD charge is 0 and if the order is COD then we need to check the amount of the order.
-If the order amount is less than equal to 300 then COD charge is 15
-Else the COD charge is 5% of the Order Amount
-- Total Charges = Total forward charge + Total RTO charge + COD charge.
+**Warehouse to All India Pincode Mapping** : Helps determine the delivery zone (A/B/C/D/E) and compare it against the courier company's records.
+
+**SKU Master with Gross Weight** : Provides the gross weight of each product to calculate the total weight of each order and compare it with the courier company's data.
+
+### Right Hand Side (RHS) Data (Courier Company Invoice in CSV)
+
+**Invoice in CSV Format** : Contains details such as AWB Number, Order ID, shipment weight, pickup and delivery pincodes, delivery zone, charges per shipment, and shipment type.
+
+**Courier Charges Rate Card** : Specifies charges based on weight slabs and pincodes. Differentiates between forward charges ("fwd") and RTO charges ("rto").
 
 ## Output Data
 
-### Order Report
+Your analysis will generate the following [output](Output.xlsx):
 
-Create a [resultant CSV/Excel](Output.xlsx) file with the following columns:
-
+- Order Report (CSV/Excel)
 - Order ID
 - AWB Number
 - Total weight as per X (KG)
@@ -67,11 +60,10 @@ Create a summary table [like this](Summary.xlsx)
 
 ## Code
 
-Code is divided in two files:
+The assignment is divided into two main code files:
 
-1. [To make complete data.](src/data/make_dataset.py)
-2. [To calculate all the charges.](src/features/build_features.py)
+[To Make Complete Data](src/data/make_dataset.py): This script processes the input data, creates a comprehensive dataset, and prepares it for analysis.
 
-Thank you for being a part of the Analysis Project!
+[To Calculate All the Charges](src/features/build_features.py): This script calculates all the charges, including forward charges ("fwd"), RTO charges ("rto"), and COD charges, based on the provided rate card and business rules.
 
-Feel free to adapt and customize this "About" document to suit your project's specific details and objectives.
+Thank you for taking on this Data Analyst Assignment. Feel free to adapt and customize this document to align with your specific project requirements. Good luck with your analysis!
