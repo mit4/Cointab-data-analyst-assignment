@@ -1,4 +1,6 @@
-# Cointab Data Analyst - Assignment
+# E-commerce Delivery Cost Analysis
+
+![pic](img/ecommerce-delivery.jpg)
 
 ## Overview
 
